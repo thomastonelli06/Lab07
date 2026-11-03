@@ -38,9 +38,11 @@ class View:
 
         # --- Sezione 2: Filtraggio ---
         # TODO
-        self.dropdown_biblioteca = ft.Dropdown(label="Biblioteca", options=[])
+        self.dropdown_biblioteca = ft.Dropdown(label="Biblioteca", options=[],
+                                               on_select=self.controller.seleziona_biblioteca)
 
-        self.dropdown_genere = ft.Dropdown(label="genere", options=[])
+        self.dropdown_genere = ft.Dropdown(label="genere", options=[],
+                                           on_select=self.controller.seleziona_genere)
         # Sezione 3: Libri
         # TODO
         btn_libri = ft.Button(content="Mostra Libri ",
