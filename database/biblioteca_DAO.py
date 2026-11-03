@@ -15,7 +15,7 @@ class BibliotecaDAO:
         if cnx is None:
             return None
 
-        query = ("SELECT id nome, indirizzo "
+        query = ("SELECT id ,nome, indirizzo "
                  "FROM biblioteca "
                  )
         cursor = cnx.cursor()

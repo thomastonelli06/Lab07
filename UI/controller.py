@@ -23,36 +23,47 @@ class Controller:
     # TODO
     def popola_dd(self):
         biblioteche = self._model.get_biblioteche()
+        generi = self._model.get_generi()
+
+        if biblioteche is None or generi is None:
+            self._view.show_alert("Impossibile caricare i filtri")
+            return
+
         ddb = self._view.dropdown_biblioteca
         ddb.options.clear()
         ddb.options.append(ft.dropdown.Option(key="Niente", text="Nessun filtro"))
+
         for bibl in biblioteche:
-            ddb.options.append(key=bibl.id, value=bibl.nome)
+            ddb.options.append(ft.dropdown.Option(key=str(bibl.id), text=bibl.nome))
 
-        ddb.value = "nessuno"
+        ddb.value = "Niente"
 
-
-        libri = self._model.get_generi()
-        ddg = self._view.dropdown_biblioteca
+        ddg = self._view.dropdown_genere
         ddg.options.clear()
         ddg.options.append(ft.dropdown.Option(key="Niente", text="Nessun filtro"))
-        for bibl in biblioteche:
-            ddg.options.append(key=bibl.id, value=bibl.nome)
 
-        ddg.value = "nessuno"
+        for genere in generi:
+            ddg.options.append(ft.dropdown.Option(key=genere, text=genere))
+
+        ddg.value = "Niente"
+        self._view.update()
         self._view.update()
 
 
     # CALLBACKS DROPDOWN
     # TODO
-    def seleziona_biblioteca(self,e):
+    def seleziona_biblioteca(self, e):
         bibl = self._view.dropdown_biblioteca.value
-        if bibl != "Niente":
-            self.biblioteca_selezionata = bibl
+        if bibl == "Niente":
+            self.biblioteca_selezionata = None
+        else:
+            self.biblioteca_selezionata = int(bibl)
 
-    def seleziona_genere(self,e):
+    def seleziona_genere(self, e):
         gen = self._view.dropdown_genere.value
-        if gen != "Niente":
+        if gen == "Niente":
+            self.genere_selezionato = None
+        else:
             self.genere_selezionato = gen
 
     # AZIONE: MOSTRA LIBRI
@@ -70,4 +81,5 @@ class Controller:
             self._view._list_view.controls.append(ft.Text(f"{str(libro)}"))
         self._view.update()
 
-        return lista_libri
+        if not lista_libri:
+            self._view.show_alert("Nessun libro trovato")

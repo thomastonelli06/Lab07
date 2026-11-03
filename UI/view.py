@@ -64,9 +64,8 @@ class View:
 
             # Sezione 2: Filtraggio
             # TODO
-            self.dropdown_biblioteca,
-
-            self.dropdown_genere,
+            ft.Row(controls=[self.dropdown_biblioteca,self.dropdown_genere]),
+            ft.Divider,
 
             # Sezione 3: Libri
             # TODO
