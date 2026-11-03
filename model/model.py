@@ -19,15 +19,15 @@ class Model:
         # TODO
 
         #get libri senza filtri per prima (tutti i libri)
-        lista_libri = self._libro_dao.read_libro()
-
+        lista_libri = self._libro_dao.read_libro(biblioteca, genere)
+        return lista_libri
 
 
     def get_generi(self):
         """Restituisce la lista di tutti i generi."""
-        # TODO
+        lista_generi = self._libro_dao.read_generi()
 
     # --- BIBLIOTECHE ---
     def get_biblioteche(self):
         """ Restituisce la lista di tutte le biblioteche."""
-        # TODO
+        lista_biblioteche = self._biblioteca_dao.read_biblioteche()

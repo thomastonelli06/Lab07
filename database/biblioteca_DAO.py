@@ -10,7 +10,24 @@ class BibliotecaDAO:
     def __init__(self):
         pass
 
-    # TODO
+    def read_biblioteche(self):
+        cnx = DBConnect.get_connection()
+        if cnx is None:
+            return None
+
+        query = ("SELECT DISTINCT id_biblioteca"
+                 "FROM biblioteca "
+                 )
+        cursor = cnx.cursor()
+        cursor.execute(query)
+
+        biblioteche = []
+        for row in cursor:
+            biblioteche.append(row)
+
+        cursor.close()
+        cnx.close()
+        return biblioteche
 
 
 

@@ -1,6 +1,7 @@
 import flet as ft
 from UI.alert import AlertManager
 
+
 '''
     VIEW:
     - Rappresenta l'interfaccia utente
@@ -37,7 +38,9 @@ class View:
 
         # --- Sezione 2: Filtraggio ---
         # TODO
+        self.dropdown_biblioteca = ft.Dropdown(label="Biblioteca", options=[])
 
+        self.dropdown_genere = ft.Dropdown(label="genere", options=[])
         # Sezione 3: Libri
         # TODO
         btn_libri = ft.Button(content="Mostra Libri ",
@@ -59,6 +62,9 @@ class View:
 
             # Sezione 2: Filtraggio
             # TODO
+            self.dropdown_biblioteca,
+
+            self.dropdown_genere,
 
             # Sezione 3: Libri
             # TODO
@@ -66,6 +72,8 @@ class View:
             self._list_view
 
         )
+
+        self.controller.popola_dd()
 
         self.page.scroll = "adaptive"
         self.page.update()
