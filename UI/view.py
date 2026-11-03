@@ -40,6 +40,11 @@ class View:
 
         # Sezione 3: Libri
         # TODO
+        btn_libri = ft.Button(content="Mostra Libri ",
+                        on_click=self.controller.handler_btn_mostra_libri)
+
+        self._list_view = ft.ListView()
+
 
         # --- Toggle Tema ---
         self.toggle_cambia_tema = ft.Switch(label="Tema scuro", value=True, on_change=self.cambia_tema)
@@ -57,6 +62,9 @@ class View:
 
             # Sezione 3: Libri
             # TODO
+            btn_libri,
+            self._list_view
+
         )
 
         self.page.scroll = "adaptive"

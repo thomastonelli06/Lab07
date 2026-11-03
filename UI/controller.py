@@ -25,3 +25,11 @@ class Controller:
 
     # AZIONE: MOSTRA LIBRI
     # TODO
+
+    def handler_btn_mostra_libri(self,e):
+        lista_libri = self._model.get_libri_filtrati()
+        self._view._list_view.controls.clear()
+        for libro in lista_libri:
+            self._view._list_view.controls.append(ft.Text(f"{libro}"))
+            self._view.update()
+
