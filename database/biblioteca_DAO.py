@@ -15,7 +15,7 @@ class BibliotecaDAO:
         if cnx is None:
             return None
 
-        query = ("SELECT DISTINCT id_biblioteca "
+        query = ("SELECT id nome, indirizzo "
                  "FROM biblioteca "
                  )
         cursor = cnx.cursor()
@@ -23,7 +23,7 @@ class BibliotecaDAO:
 
         biblioteche = []
         for row in cursor:
-            biblioteche.append(row)
+            biblioteche.append(Biblioteca(*row))
 
         cursor.close()
         cnx.close()

@@ -39,16 +39,17 @@ class LibroDAO:
         if cnx is None:
             return None
 
-        query = ("SELECT DISTINCT genere"
+        query = ("SELECT DISTINCT genere "
                  "FROM libro "
                  )
         cursor = cnx.cursor()
         cursor.execute(query)
 
         generi = []
+
         for row in cursor:
 
-            generi.append(row)
+            generi.append(row[0]) #row[0] perchè for row in cursor restituisce una tupla con un elemento
 
         cursor.close()
         cnx.close()
